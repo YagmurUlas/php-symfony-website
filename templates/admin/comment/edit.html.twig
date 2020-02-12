@@ -1,0 +1,59 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Comments{% endblock %}
+
+{% block body %}
+
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h1>Comment Edit</h1>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Comment Page -> Edit</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-md-flex align-items-center">
+                                <!-- ============================================================== -->
+
+                                {{ include('admin/comment/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+                                <!-- ============================================================== -->
+                            </div>
+                        </div>
+                    </div>
+                    {{ include('admin/comment/_delete_form.html.twig') }}
+                    <br>
+                    <a href="{{ path('admin_messages_index') }}" class="btn btn-block btn-outline-primary">Back to List</a>
+                    <br>
+                </div>
+                <!-- ============================================================== -->
+                <!-- Recent comment and chats -->
+                <!-- ============================================================== -->
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

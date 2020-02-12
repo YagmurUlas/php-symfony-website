@@ -1,0 +1,98 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Announcements Page Index{% endblock %}
+
+{% block body %}
+
+    <script language="JavaScript" type="text/javascript">
+        function openWin( windowURL, windowName, windorFeatures) { window.open( windowURL, windowName, windorFeatures); }
+    </script>
+
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-md-flex no-block align-items-center">
+                    <a href="{{ path('admin_announcement_new') }}"  class="btn btn-outline-danger" type="button">Create New Announcement</a>
+
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Announcement</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Announcements Page</h3><br>
+                            <div class="d-md-flex align-items-center">
+                                <!-- ============================================================== -->
+
+
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Title</th>
+                                        <th>Userid</th>
+                                        <th>Keywords</th>
+                                        <th>Description</th>
+                                        <th>City</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for announcement in announcements %}
+                                        <tr>
+                                            <td>{{ announcement.id }}</td>
+                                            <td>{{ announcement.title }}</td>
+                                            <td>{{ announcement.userid }}</td>
+                                            <td>{{ announcement.keywords }}</td>
+                                            <td>{{ announcement.description }}</td>
+                                            <td>{{ announcement.city }}/{{ announcement.country }}</td>
+                                            <td>{{ announcement.date ? announcement.date|date('Y-m-d') : '' }}</td>
+                                            <td>{{ announcement.status }}</td>
+                                            <td>
+                                                <a href="{{ path('admin_announcement_show', {'id': announcement.id}) }}" class="btn btn-block btn-warning" >Show</a>
+
+                                                <a href="{{ path('admin_announcement_edit', {'id': announcement.id}) }}" class="btn btn-block btn-primary" >Edit</a>
+                                                <br>
+                                                {{ include('admin/announcement/_delete_form.html.twig') }}
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="13">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

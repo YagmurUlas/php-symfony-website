@@ -1,0 +1,118 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ setting[0].title }}{% endblock %}
+{% block keywords %}{{ setting[0].keywords}}{% endblock %}
+{% block description %}{{ setting[0].description }}{% endblock %}
+
+{% block slider %} {% include('home/slider.html.twig') %} {% endblock %}
+{% block body %}
+    <style>
+        .btn-default
+        {
+            background-color: #697686;
+            color:#FFF;
+            border-color: #2F3E48;
+        }
+    </style>
+    <section id="maincontent">
+        <div class="container">
+
+            <div class="row">
+
+                {% for rs in news %}
+                    <a href="{{ path('news_show', {'id': rs.id}) }}" style="color: #2a2358">
+                        <div class="span3">
+                            <div class="well well-dark box">
+                                <img src="{{ asset('uploads/images/' ~ rs.image) }}" alt="" style="height: 130px; width:150px"/>
+                                <h3>{{rs.title}}</h3>
+                                <p>
+                                    {{rs.title}}
+                                </p>
+                                <a href="{{ path('news_show', {'id': rs.id}) }}" style="color: #2a2358">Read more</a>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+    <section id="bottom">
+        <div class="container">
+
+            <!-- divider -->
+            <div class="row">
+                <div class="span12">
+                    <div class="divider"></div>
+                </div>
+            </div>
+            <!-- end divider -->
+
+
+            <div class="row">
+                <div class="span6">
+
+                    <h3><strong>Recent Announcements</strong></h3><br>
+
+                    <div id="latest-work" class="carousel btleft">
+                        <div class="carousel-wrapper">
+                            <ul class="portfolio-home da-thumbs">
+                                {% for rs in announcement %}
+                                    <a  href="{{ path('user_announcement_show', {'id': rs.id}) }}">
+                                        <li>
+                                            <div class="span6">
+                                                <div class="span1">
+                                                    <div class="well well-info box">
+                                                        <h5>{{rs.date|date("m/d/Y")}}</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="span4">
+                                                    <div class="well well-dark box">
+                                                        <h5>{{rs.description}}</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li></a>
+                                {% endfor %}
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                {# Buradan sonrasi Etkinlikler olabilir#}
+                <div class="span6">
+                    <h3><strong>Activities</strong></h3><br>
+
+
+                            <ul class="portfolio-home da-thumbs">
+                                {% for rs in event %}
+                                    <li>
+                                        <div class="span6">
+                                            <div class="span1">
+                                                <div class="well well-success box">
+                                                    <h5>{{rs.date|date("m/d/Y")}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="span4">
+                                                <div class="well well-dark box">
+                                                    <h5>{{rs.description}}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                {# Buradan son Etkinlikler olabilir#}
+            </div>
+        </div>
+    </section>
+{% endblock %}

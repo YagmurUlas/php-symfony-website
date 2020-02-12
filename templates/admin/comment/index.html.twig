@@ -1,0 +1,93 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Comments{% endblock %}
+
+{% block body %}
+
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h3>Comments List</h3>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Comments</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-md-flex align-items-center">
+                                <!-- ============================================================== -->
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Subject</th>
+                                        <th>Comment</th>
+                                        <th>Status</th>
+                                        <th>Ip</th>
+                                        <th>User Id</th>
+                                        <th>News</th>
+                                        <th>Created_at</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for comment in comments %}
+                                        <tr>
+                                            <td>{{ comment.id }}</td>
+                                            <td>{{ comment.subject }}</td>
+                                            <td>{{ comment.comment }}</td>
+                                            <td>{{ comment.status }}</td>
+                                            <td>{{ comment.ip }}</td>
+
+                                            <td><a href="{{ path('admin_user_show', {'id': comment.userid}) }}">{{ comment.name }} {{ comment.surname }}</a></td>
+                                            <td><a href="{{ path('admin_news_show', {'id': comment.newsid}) }}">{{ comment.title }}</a></td>
+                                            <td>{{ comment.created_at }}</td>
+                                            <td>
+                                                <a href="{{ path('admin_comment_show', {'id': comment.id}) }}" class="btn btn-block btn-warning">Show</a>
+                                                <a href="{{ path('admin_comment_edit', {'id': comment.id}) }}" class="btn btn-block btn-primary">Edit</a>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="9">No records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                                <!-- ============================================================== -->
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- Recent comment and chats -->
+                <!-- ============================================================== -->
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

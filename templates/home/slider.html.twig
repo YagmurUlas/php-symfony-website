@@ -1,0 +1,38 @@
+<section id="intro">
+    <div class="jumbotron masthead">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="span12">
+
+                    <div class="camera_wrap camera_black_skin" id="camera_wrap_2" >
+
+                        {% for rs in slider %}
+                            <div data-thumb="{{ asset('uploads/images/' ~ rs.image) }}" data-src="{{ asset('uploads/images/' ~ rs.image) }}">
+                                <a href="{{ path('news_show', {'id': rs.id}) }}">
+                                    <img src="{{ asset('uploads/images/' ~ rs.image) }}">
+                                </a>
+                                <div class="camera_caption fadeFromBottom">
+                                    <br>
+                                    <div class="well well-warning box">
+                                        <img src="assets/img/dummies/logo.png" alt="" style="width: 80px; height: 80px" />
+
+                                        <a href="{{ path('news_show', {'id': rs.id}) }}"> <h3><strong>&emsp; T.C. UAB İĞNEADA LİMAN BAŞKANLIĞI </strong></h3></a>
+
+                                    </div>
+                                    <div class="hidden-phone">
+                                        <br><br><br><br><br><br><br><br>
+
+                                        <p>{{ rs.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <!-- #camera_wrap_1 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,83 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }} Profile{% endblock %}
+
+{% block body %}
+
+    <section id="subintro" xmlns="http://www.w3.org/1999/html">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span8">
+                        <h3><i class="m-icon-big-swapright m-icon-white"></i> My Announcement</h3>
+                        <p></p>
+                    </div>
+                    <div class="span4">
+                        <div class="input-append">
+                            <form class="form-search">
+                                <input type="text" class="input-medium search-query">
+                                <button type="submit" class="btn btn-inverse">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+                {{ include('user/usermenu.html.twig') }}
+
+                <!-- -----------article-------------------    -->
+
+                <div class="span8">
+                    <article class="blog-post">
+                        <div class="tooltip-demo headline">
+                            <h4><strong>User Announcement List</strong></h4>
+                            <span class="comment"><a href="/user/user_news" rel="tooltip" data-placement="top" title="3 Comments">2 comments</a></span>
+                        </div>
+
+                        <!-- start article 2 -->
+                        <article class="blog-post">
+                            <div class="tooltip-demo headline">
+                                
+                            </div>
+
+                            <div class="row">
+
+                                <div class="span5">
+                                    <ul class="post-meta">
+                                        <li class="first"><i class="icon-user"></i> <span><a href="#">{{ app.user.name }} {{ app.user.surname }}</a></span></li>
+                                        <li><i class="icon-list-alt"></i> <span><a href="#">Web design</a></span></li>
+                                        <li class="last"><i class="icon-tags"></i> <span><a href="#">Design</a>, <a href="#">Blog</a>, <a href="#">Web page</a>, <a href="#">Clean</a></span></li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                    <p>
+                                        Ei eos suavitate forensibus mnesarchum. Eu est timeam vocibus, an nostro aliquam adipiscing quo. Zril equidem et quo, ad albucius scripserit sit. Vis constituto deseruisse an, interesset reprehendunt et mel, gloriatur concludaturque pro no. At ludus mediocritatem
+                                        qui, no vituperata assueverit accommodare his.
+                                    </p>
+                                    <button class="btn btn btn-success" type="button">Read more</button>
+                                </div>
+                            </div>
+
+                        </article>
+                        <!-- end article 2 -->
+                        <div class="row">
+
+                            <div class="span3">
+                                <!-- -----------end article-------------------    -->
+
+
+
+
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}

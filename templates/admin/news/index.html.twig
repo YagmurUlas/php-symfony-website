@@ -1,0 +1,104 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}News Index Page{% endblock %}
+
+{% block body %}
+
+    <script language="JavaScript" type="text/javascript">
+        function openWin( windowURL, windowName, windorFeatures) { window.open( windowURL, windowName, windorFeatures); }
+    </script>
+
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-md-flex no-block align-items-center">
+                    <a href="{{ path('admin_news_new') }}"  class="btn btn-outline-danger" type="button">Create New News</a>
+
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">News</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>News Index Page</h3><br>
+                            <div class="d-md-flex align-items-center">
+                                <!-- ============================================================== -->
+
+                                <table class="table table">
+                                    <thead>
+
+                                    <th><strong>Id</strong></th>
+                                    <th><strong>User</strong></th>
+                                    <th><strong>Category</strong></th>
+                                    <th><strong>Title</strong></th>
+                                    <th><strong>Description</strong></th>
+                                    <th><strong>Image</strong></th>
+                                    <th><strong>City</strong></th>
+                                    <th><strong>Gallery</strong></th>
+                                    <th><strong>Status</strong></th>
+
+                                    </thead>
+                                    <tbody>
+                                    {% for news in news %}
+                                        <td>{{ news.id }}</td>
+                                        <td><a href="{{ path('admin_user_show', {'id': news.userid}) }}">
+                                                {{ news.name }} {{ news.surname }}</a></td>
+                                        <td>{{ news.catname }}</td>
+                                        <td>{{ news.title }}</td>
+                                        <td>{{ news.description }}</td>
+                                        <td><img src="{{ asset('uploads/images/' ~ news.image) }}" height="40" width="55" alt="xx"> </td>
+                                        <td>{{ news.city }}/{{ news.country }}</td>
+                                        <td>
+                                            <a href="javascript:openWin('{{ path('admin_image_new' ,{'id' : news.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizable=no,width=900,height=600');">
+                                                <img src="{{ asset('assets/admin/img') }}/gallery.png" width="60" height="60">
+                                            </a>
+                                        </td>
+                                        <td>{{ news.status }}</td>
+                                        <td>
+                                            <!-- ====================BUTTONS====================== -->
+                                            {{ include('admin/news/_delete_form.html.twig') }}
+                                            <br>
+                                            <a href="{{ path('admin_news_show', {'id': news.id}) }}" class="btn btn-block btn-warning">Show</a><br>
+                                            <a href="{{ path('admin_news_edit', {'id': news.id}) }}" class="btn btn-block btn-primary" style="padding-top: -30px ; ">Edit</a>
+                                        </td>
+
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="11">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <!-- ============================================================== -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

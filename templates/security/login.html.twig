@@ -1,0 +1,125 @@
+{% extends 'loginbase.html.twig' %}
+
+{% block title %}LOGIN{% endblock %}
+
+{% block body %}
+    <head>
+
+    </head>
+
+    <body>
+    <div class="main-wrapper">
+
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
+            <div class="auth-box bg-dark border-top border-secondary">
+                <div id="loginform">
+                    <div class="text-center p-t-20 p-b-20">
+                        <span class="db"><img src="\assets\admin\assets\images\logo-icon.png" alt="logo" class="text-danger">ADMIN LOGIN</span>
+                    </div>
+                    <br>
+                    <form method="post">
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+
+                        {% if app.user %}
+                            <div class="mb-3 text-danger">
+                                You are logged in as {{ app.user.username }} -->  <a href="{{ path('app_logout') }}">Logout</a>
+                            </div>
+                        {% endif %}
+
+                        <h1 class="h3 mb-3 text-light">Please Sign in !</h1>
+                        <label for="inputEmail" placeholder="Enter your email address" class="text-danger">Email</label>
+                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus><br>
+                        <label for="inputPassword" data-placeholder="Enter your password" class="text-danger" >Password</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control" required>
+                        <br>
+
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
+
+                        {#
+                            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                            See https://symfony.com/doc/current/security/remember_me.html
+
+                            <div class="checkbox mb-3">
+                                <label>
+                                    <input type="checkbox" name="_remember_me"> Remember me
+                                </label>
+                            </div>
+                        #}
+                        <button class="btn btn-block btn-outline-danger" type="submit" >
+                            Sign In
+                        </button>
+                    </form>
+
+                </div>
+                <div id="recoverform">
+                    <div class="text-center">
+                        <span class="text-white">Enter your e-mail address below and we will send you instructions how to recover a password.</span>
+                    </div>
+                    <div class="row m-t-20">
+                        <!-- Form -->
+                        <form class="col-12" action="index.html">
+                            <!-- email -->
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-email"></i></span>
+                                </div>
+                                <input type="text" class="form-control form-control-lg" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                            <!-- pwd -->
+                            <div class="row m-t-20 p-t-20 border-top border-secondary">
+                                <div class="col-12">
+                                    <a class="btn btn-success" href="#" id="to-login" name="action">Back To Login</a>
+                                    <button class="btn btn-info float-right" type="button" name="action">Recover</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    <script src="admin/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+    <script>
+
+        $('[data-toggle="tooltip"]').tooltip();
+        $(".preloader").fadeOut();
+        // ==============================================================
+        // Login and Recover Password
+        // ==============================================================
+        $('#to-recover').on("click", function() {
+            $("#loginform").slideUp();
+            $("#recoverform").fadeIn();
+        });
+        $('#to-login').click(function(){
+
+            $("#recoverform").hide();
+            $("#loginform").fadeIn();
+        });
+    </script>
+
+    </body>
+
+    </html>
+{% endblock %}

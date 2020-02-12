@@ -1,0 +1,70 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }} Profile{% endblock %}
+
+{% block body %}
+
+    <section id="subintro" xmlns="http://www.w3.org/1999/html">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span8">
+                        <h3><i class="m-icon-big-swapright m-icon-white"></i> Announcement Details</h3>
+                        <p></p>
+                    </div>
+                    <div class="span4">
+                        <div class="input-append">
+                            <form class="form-search">
+                                <input type="text" class="input-medium search-query">
+                                <button type="submit" class="btn btn-inverse">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+                <div class="span2"></div>
+                <!-- -----------article-------------------    -->
+
+                <div class="span8">
+                    <article class="blog-post">
+                        <div class="tooltip-demo headline">
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="span9">
+                                <!-- -----------end article-------------------    -->
+
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <h3><strong>{{ announcement.title }}</strong></h3>
+                                        {{ announcement.date ? announcement.date|date('Y-m-d ') : '' }}
+                                    </tr>
+                                    <tr>
+
+                                        <p>{{ announcement.details|raw }}</p>
+                                        {{ announcement.city }} / {{ announcement.country }}
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        {{ include('announcement/_delete_form.html.twig') }}
+                        <a href="/" class="btn btn-block btn-inverse" type="button">Back to List</a>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}

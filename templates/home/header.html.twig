@@ -1,0 +1,89 @@
+<header>
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <!-- logo -->
+                <a class="brand logo" href="/">
+
+                </a>
+                <!-- end logo -->
+
+                <!-- top menu -->
+                <div>
+                    <nav>
+                        <ul class="nav topnav">
+                            <li class="dropdown dark active">
+                                <a href="/"><i class="icon-home icon-black"></i> ANASAYFA</a>
+
+                            </li>
+                            <li class="dropdown dark ">
+                                <a href="#"><i class="icon-star icon-black"></i> KURUMSAL</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="https://www.uab.gov.tr/bakan-mehmet-cahit-turhan">Bakan Mehmet Cahit Turhan</a></li>
+
+                                    <li><a href="https://www.uab.gov.tr/organizasyon-semasi">Organizasyon Şeması</a></li>
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown dark">
+                                <a href="#"><i class="icon-camera icon-black"></i> MEVZUAT</a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown"><a href="https://atlantis.udhb.gov.tr/OTV2/_public/">
+                                            Deniz Ticareti Genel Müdürlüğü</a>
+                                    </li>
+                                    <li class="dhttps://imo.uab.gov.tr/"><a href="#">IMO Mezvuat</a></li>
+                                    <li><a href="http://www.resmigazete.gov.tr/">Resmi Gazete</a></li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown dark ">
+                                <a href="#"><i class="icon-star icon-black"></i> GEMİADAMLARI</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="https://gbs.udhb.gov.tr/">Gemi Adamı Bilgi Sistemi</a></li>
+
+                                    <li><a href="http://gss.gasm.gov.tr/goss/genel/Default.aspx?ReturnUrl=%2fgoss%2fdefault.aspx">Online Sınav Sistemi</a></li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown dark">
+                                <a href="#"><i class="icon-bullhorn icon-black"></i> ONLINE IŞLEMLER</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="https://atlantis.udhb.gov.tr/OTV2/_public/">
+                                            ÖTV'siz Yakıt Bilgi Ekranı</a></li>
+                                    <li><a href="http://odemeler.udhb.gov.tr/login.aspx?ReturnUrl=%2fdefault.aspx">e-Tahsilat</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown dark">
+                                <a href="/about"><i class="icon-leaf icon-black"></i> HAKKIMIZDA</a>
+
+                            </li>
+                            <li class="dropdown dark">
+                                <a href="/contact"><i class="icon-envelope icon-black"></i> İLETİŞİM</a>
+                            </li>
+
+                            {% if app.user %}
+                                <li class="dropdown inverse">
+                                    <a href="/user"><img src="{{ asset('uploads/images/' ~ app.user.image) }}" style="height: 16px ">
+                                        {{ app.user.name }} {{ app.user.surname }}</a>
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li><a href="/logout">Logout</a></li>
+                                    </ul>
+                                </li>
+
+                            {% else %}
+                                <li class="dropdown warning">
+                                    <a href="/loginuser"><i class="icon-leaf icon-white"></i> Login</a>
+                                </li>
+                            {% endif %}
+
+                        </ul>
+                    </nav>
+                </div>
+                <!-- end menu -->
+            </div>
+        </div>
+    </div>
+</header>

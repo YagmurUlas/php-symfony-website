@@ -1,0 +1,95 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}events Page Index{% endblock %}
+
+{% block body %}
+
+    <script language="JavaScript" type="text/javascript">
+        function openWin( windowURL, windowName, windorFeatures) { window.open( windowURL, windowName, windorFeatures); }
+    </script>
+
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-md-flex no-block align-items-center">
+                    <a href="{{ path('admin_event_new') }}"  class="btn btn-outline-danger" type="button">Create New Events</a>
+
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">event</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Events Page</h3><br>
+                            <div class="d-md-flex align-items-center">
+                                <!-- ============================================================== -->
+
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Userid</th>
+                                        <th>Title</th>
+                                        <th>City / Country</th>
+                                        <th>Description</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for event in events %}
+                                        <tr>
+                                            <td>{{ event.id }}</td>
+                                            <td>{{ event.userid }}</td>
+                                            <td>{{ event.title }}</td>
+                                            <td>{{ event.city }}/{{ event.country }}</td>
+                                            <td>{{ event.description }}</td>
+                                            <td>{{ event.date ? event.date|date('Y-m-d') : '' }}</td>
+                                            <td>{{ event.status }}</td>
+                                            <td>
+                                                <a href="{{ path('admin_event_show', {'id': event.id}) }}" class="btn btn-block btn-warning" >Show</a>
+
+                                                <a href="{{ path('admin_event_edit', {'id': event.id}) }}" class="btn btn-block btn-primary" >Edit</a>
+                                                <br>
+                                                {{ include('admin/event/_delete_form.html.twig') }}
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="13">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

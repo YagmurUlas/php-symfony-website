@@ -1,0 +1,60 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}New Announcements{% endblock %}
+
+{% block body %}
+
+    <script language="JavaScript" type="text/javascript">
+        function openWin( windowURL, windowName, windorFeatures) { window.open( windowURL, windowName, windorFeatures); }
+    </script>
+
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-md-flex no-block align-items-center">
+
+
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Announcement</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3> Create New Announcements </h3><br>
+                            <div class="d-md-flex align-items-center">
+                                <!-- ============================================================== -->
+
+                                {{ include('admin/announcement/_form.html.twig') }}
+
+                                <!-- ============================================================== -->
+                            </div>
+                        </div>
+                        <a href="{{ path('admin_announcement_index') }}" class="btn btn-outline-primary" type="button">Back to list</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

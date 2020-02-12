@@ -1,0 +1,175 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ news.title }}{% endblock %}
+{% block keywords %}{{ news.keywords }}{% endblock %}
+
+{% block body %}
+    <script language="JavaScript" type="text/javascript">
+        function openWin( windowURL, windowName, windorFeatures) { window.open( windowURL, windowName, windorFeatures); }
+    </script>
+    <!-- Asagidaki iki scripti ekleyince nav tab calisti -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <section id="subintro" xmlns="http://www.w3.org/1999/html">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span8">
+                        <h3><i class="m-icon-big-swapright m-icon-white"></i> News Detail Page</h3>
+                        <p></p>
+                    </div>
+                    <div class="span4">
+                        <div class="input-append">
+                            <form class="form-search">
+                                <input type="text" class="input-medium search-query">
+                                <button type="submit" class="btn btn-inverse">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+                <div class="span">
+                </div>
+                <div class="span6">
+
+                    <div id="myCarousel" class="carousel slide">
+                        <div class="carousel-inner">
+                            {% set counter = 0 %}
+                            <div class="item">
+                                <img src="{{ asset('uploads/images/' ~ news.image) }}" alt="" style="height:350px; width:600px;" />
+                                <div class="carousel-caption">
+                                    <h4>{{news.title}}</h4>
+                                </div>
+                            </div>
+                            {% for rs in images %}
+                                {% set counter = counter + 1 %}
+                                <div class="item {% if counter == 1 %}active{% endif %}" id="slide{{ counter }}">
+                                    <img src="{{ asset('uploads/images/' ~ rs.image) }}" alt="" style="height:350px; width:600px;" />
+                                    <div class="carousel-caption">
+                                        <h4>{{rs.title}}</h4>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                    </div>
+                </div>
+
+
+                <div class="span5">
+                    <article class="blog-post">
+                        <div class="tooltip-demo headline">
+                            <h4><strong>{{ news.title }}</strong></h4>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="span5">
+                                <!-- -----------end article-------------------    -->
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <th>Description</th>
+                                        <td>{{ news.description }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>City</th>
+                                        <td>{{ news.city }} / {{ news.country }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="container">
+
+                <div class="row">
+                    <div class="span"></div>
+                    <div class="span11">
+
+                        <div class="tabbable"> <!-- Only required for left/right tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab1" data-toggle="tab">News Detail</a></li>
+                                <li><a href="#comment" data-toggle="tab">Comments</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab1">
+                                    <p>{{news.detail|raw}}</p>
+                                </div>
+                                <div class="tab-pane fade" id="comment">
+
+                                    {% for rs in comments %}
+                                    <ul class="recent">
+                                        <li>
+                                            <h3><img src="assets/img/icons/quote.png" class="alignleft" alt="" />{{ rs.subject }}</h3></im
+                                            <p>
+                                                {{rs.comment}}
+                                            </p>
+                                            <br>
+                                            <span>Post : 27.08.1996</span>
+                                        </li>
+                                    </ul>
+
+                                    {% endfor %}
+
+                                    {% if app.user %}
+
+                                        <div class="comment-post">
+                                            <div class="span6">
+                                                <br>
+                                                <h3>&emsp;&ensp;Leave a comment..</h3>
+                                                {{ include('messages.html.twig') }}
+                                                <div id="errormessage"></div>
+                                                <form name="comment" action="{{ path('user_new_comment', {'id': news.id}) }}" method="post" role="form" class="contactForm">
+
+                                                    <div class="span5 form-group">
+                                                        <input type="text" class="input-block-level" id="comment_subject" name="comment[subject]" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                                                        <div class="validation"></div>
+                                                    </div>
+
+                                                    <!--<div class="span3 form-group">
+                                                        <select id="messages_rate" name="messages[subject]" class="input-block-level">
+                                                            <option></option>
+                                                            <option></option>
+                                                            <option></option>
+                                                            <option></option>
+                                                            <option></option>
+                                                        </select>
+                                                    </div> -->
+
+                                                    <div class="span5 form-group">
+                                                        <textarea class="input-block-level" id="comment_comment" name="comment[comment]" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Comment"></textarea>
+                                                        <div class="validation"></div>
+                                                        <input type="hidden" name="token" value="{{csrf_token('comment')}}" />
+                                                        <button class="btn btn-medium btn-info" type="submit">Send Comment!</button>
+                                                    </div>
+
+                                        </form>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <li class="dropdown warning">
+                                            <a href="/loginuser"><i class="icon-leaf icon-white"></i> If you want to add comment please login</a>
+                                        </li>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}

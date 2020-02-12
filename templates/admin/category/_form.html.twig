@@ -1,0 +1,54 @@
+<form name="category" method="post" xmlns="http://www.w3.org/1999/html">
+    <div class="card">
+        <form class="form-horizontal">
+            <div class="card-body">
+                <h4 class="card-title">Category Form </h4>
+                <div class="form-group row">
+                    <label class="col-md-3 m-t-15">Parent ID</label>
+                    <div class="col-md-9">
+                    <select id="category_parentid" name="category[parentid]" class="select2 form-control custom-select select2-hidden-accessible" >
+                        <option value="0">Main Category </option>
+                        {% for cat in categories %}
+                            <option value="{{ cat.id }}" {{ cat.id==category.parentid ? 'Selected': '' }}> {{ cat.title }}</option>
+                        {% endfor %}
+                    </select>
+                    </div></div>
+
+                <div class="form-group row">
+                    <label for="category_keywords" class="col-md-3 m-t-15">Category Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="category_title" name="category[title]" value="{{ category.title }}" required="required" maxlength="255" placeholder="Category Name Here" >
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="category_description" class="col-md-3 m-t-15">Description</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="category_description" name="category[description]"value="{{ category.description }}" maxlength="255" placeholder="Description Here">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="category_keywords" class="col-md-3 m-t-15">Category Keywords</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="category_keywords" name="category[keywords]" value="{{ category.keywords }}"maxlength="75"placeholder="Keywords Here">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="category_status" class="col-md-3 m-t-15">Status</label>
+                    <div class="col-md-9">
+                    <select id="category_status" name="category[status]" class="form-control">
+                        <option>{{ category.status }}</option>
+                        <option> True </option>
+                        <option> False </option>
+                    </select>
+                </div>
+                </div>
+            </div>
+            <div class="border-top">
+                <div class="card-body">
+                    <a href="{{ path('admin_category_index') }}" class="btn btn-warning btn-lg" ><i class="icon-remove icon-white"></i> Iptal</a>
+                    <button type="submit" class="btn btn-primary btn-lg "><i class="icon-check"></i>Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</form>

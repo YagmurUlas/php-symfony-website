@@ -1,0 +1,112 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }} Profile{% endblock %}
+
+{% block body %}
+
+    <script language="JavaScript" type="text/javascript">
+        function openWin( windowURL, windowName, windorFeatures) { window.open( windowURL, windowName, windorFeatures); }
+    </script>
+
+    <section id="subintro" xmlns="http://www.w3.org/1999/html">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span8">
+                        <h3><i class="m-icon-big-swapright m-icon-white"></i> User News List</h3>
+                        <p></p>
+                    </div>
+                    <div class="span4">
+                        <div class="input-append">
+                            <form class="form-search">
+                                <input type="text" class="input-medium search-query">
+                                <button type="submit" class="btn btn-inverse">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+                {{ include('user/usermenu.html.twig') }}
+
+                <!-- -----------article-------------------    -->
+
+                <div class="span9">
+                    <article class="blog-post">
+                        <div class="tooltip-demo headline">
+                            <h4><strong>User News List</strong></h4>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="span9">
+                                <a href="{{ path('user_news_new') }}" class="btn btn-block btn-inverse" type="button">Add News</a>
+                            </div>
+                            <br>
+                            <div class="span9">
+
+                                <table class="table table">
+                                    <thead>
+                                    <br>
+                                    <th><strong>Id</strong></th>
+                                    <th><strong>Title</strong></th>
+                                    <th><strong>Keywords</strong></th>
+                                    <th><strong>Description</strong></th>
+                                    <th><strong>Image</strong></th>
+                                    <th><strong>City</strong></th>
+                                    <th><strong>Country</strong></th>
+                                    <th><strong>Gallery</strong></th>
+
+
+                                    </thead>
+                                    <tbody>
+                                    {% for news in news %}
+                                        <td>{{ news.id }}</td>
+                                        <td>{{ news.title }}</td>
+                                        <td>{{ news.keywords }}</td>
+                                        <td>{{ news.description }}</td>
+                                        <td><img src="{{ asset('uploads/images/' ~ news.image) }}" style="height:50px" width="200 " alt="xx"> </td>
+                                        <td>{{ news.city }}</td>
+                                        <td>{{ news.country }}</td>
+                                        <td>
+                                            <a href="javascript:openWin('{{ path('user_image_new' ,{'id' : news.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizable=no,width=900,height=600');">
+                                                <img src="{{ asset('assets/admin/img') }}/gallery.png" style="height:40px " >
+                                            </a>
+                                        </td>
+
+
+                                        <!-- ====================BUTTONS====================== -->
+
+                                        <td>
+                                            <a href="{{ path('news_show', {'id': news.id}) }}" class="btn btn-primary" >Show</a><br>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('user_news_edit', {'id': news.id}) }}" class="btn btn-primary" >Edit</a>
+                                        </td>
+                                        <td>
+                                            {{ include('news/_delete_form.html.twig') }}
+                                        </td>
+
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="11">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}

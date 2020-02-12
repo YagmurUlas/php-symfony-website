@@ -1,0 +1,55 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }} Profile{% endblock %}
+
+{% block body %}
+
+    <section id="subintro" xmlns="http://www.w3.org/1999/html">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span8">
+                        <h3><i class="m-icon-big-swapright m-icon-white"></i> User Information</h3>
+                        <p></p>
+                    </div>
+                    <div class="span4">
+                        <div class="input-append">
+                            <form class="form-search">
+                                <input type="text" class="input-medium search-query">
+                                <button type="submit" class="btn btn-inverse">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+                {{ include('user/usermenu.html.twig') }}
+
+
+                <div class="span8">
+                    <article class="blog-post">
+                        <div class="tooltip-demo headline">
+                            <h4><strong>Add New User News</strong></h4>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="span8">
+                                <!-- -----------end article-------------------    -->
+                                {{ include('news/_form.html.twig') }}
+
+                                <a href="{{ path('user_news_index') }}" class="btn btn-block btn-dark " type="button">Back to List</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}

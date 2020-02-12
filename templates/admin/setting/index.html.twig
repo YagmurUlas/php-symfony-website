@@ -1,0 +1,79 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Category Home Page{% endblock %}
+
+{% block body %}
+
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Category</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <h3>Settings Page</h3>
+            <div class="row">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-md-flex align-items-center">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Title</th>
+                                        <th>Company</th>
+                                        <th>Email</th>
+                                        <th>Status</th>
+                                        <th>actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for setting in settings %}
+                                        <tr>
+                                            <td>{{ setting.id }}</td>
+                                            <td>{{ setting.title }}</td>
+                                            <td>{{ setting.company }}</td>
+                                            <td>{{ setting.email }}</td>
+                                            <td>{{ setting.status }}</td>
+                                            <td>
+                                                <a href="{{ path('admin_setting_show', {'id': setting.id})}}" class="btn btn-outline-primary" type="button">Show</a>
+                                                <a href="{{ path('admin_setting_edit', {'id': setting.id}) }}" class="btn btn-outline-primary" type="button">Edit</a>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="21">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                        <a href="{{ path('admin_setting_new') }}"  class="btn btn-outline-primary" type="button">Create Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

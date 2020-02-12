@@ -1,0 +1,107 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }} Profile{% endblock %}
+
+{% block body %}
+
+    <section id="subintro" xmlns="http://www.w3.org/1999/html">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span8">
+                        <h3><a href="#"><i class="m-icon-big-swapright m-icon-white"></i> My Announcements</h3></a>
+                        <p></p>
+                    </div>
+                    <div class="span4">
+                        <div class="input-append">
+                            <form class="form-search">
+                                <input type="text" class="input-medium search-query">
+                                <button type="submit" class="btn btn-inverse">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+                {{ include('user/usermenu.html.twig') }}
+
+                <!-- -----------article-------------------    -->
+
+                <!-- -----------article-------------------    -->
+
+                <div class="span9">
+
+                    <div class="tooltip-demo headline">
+                        <h4><strong>User Announcement List</strong></h4>
+                    </div>
+
+                </div>
+                <!-- start article 2 -->
+                <article class="blog-post">
+
+
+                    <div class="row">
+                        <div class="span9">
+                            <a href="{{ path('user_announcement_new') }}" class="btn btn-block btn-inverse" type="button">Add New </a>
+                        </div>
+                        <div class="span9">
+
+                            <table class="table">
+                                <thead>
+                                <br>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Title</th>
+                                    <th>Userid</th>
+                                    <th>Keywords</th>
+                                    <th>Description</th>
+                                    <th>City</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for announcement in announcements %}
+                                    <tr>
+                                        <td>{{ announcement.id }}</td>
+                                        <td>{{ announcement.title }}</td>
+                                        <td>{{ announcement.userid }}</td>
+                                        <td>{{ announcement.keywords }}</td>
+                                        <td>{{ announcement.description }}</td>
+                                        <td>{{ announcement.city }}/{{ announcement.country }}</td>
+                                        <td>{{ announcement.date ? announcement.date|date('Y-m-d') : '' }}</td>
+                                        <td>{{ announcement.status }}</td>
+                                        <td>
+                                            <a href="{{ path('user_announcement_show', {'id': announcement.id}) }}" class="btn btn-block btn-warning" >Show</a>
+
+                                            <a href="{{ path('user_announcement_edit', {'id': announcement.id}) }}" class="btn btn-block btn-primary" > Edit</a>
+                                            <br>
+                                            {{ include('announcement/_delete_form.html.twig') }}
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="13">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </article>
+
+
+
+            </div>
+        </div>
+        </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}User Login {% endblock %}
+
+{% block body %}
+
+    <section id="subintro">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span8">
+                        <h3><i class="m-icon-big-swapright m-icon-white"></i> Blog</h3>
+                        <p>USER LOGIN</p>
+                    </div>
+                    <div class="span4">
+                        <div class="input-append">
+                            <form class="form-search">
+                                <input type="text" class="input-medium search-query">
+                                <button type="submit" class="btn btn-inverse">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+
+
+                <form method="post" action="/login">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="mb-3 text-danger">
+                            You are logged in as {{ app.user.username }} -->  <a href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    {% endif %}
+
+                    <h1 class="h3 mb-3 text-light">Please Sign in !</h1>
+                    <label for="inputEmail" placeholder="Enter your email address" class="text-danger">Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus><br>
+                    <label for="inputPassword" data-placeholder="Enter your password" class="text-danger" >Password</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" required>
+                    <br>
+
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+
+                    {#
+                        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                        See https://symfony.com/doc/current/security/remember_me.html
+
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" name="_remember_me"> Remember me
+                            </label>
+                        </div>
+                    #}
+                    <button class="btn btn-block btn-outline-danger" type="submit" >
+                        Sign In
+                    </button>
+                </form>
+
+            </div>
+        </div>
+        </article>
+        </div>
+        </div>
+        </div>
+    </section>
+
+{% endblock %}

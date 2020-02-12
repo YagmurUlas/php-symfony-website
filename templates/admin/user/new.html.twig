@@ -1,0 +1,55 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Create New User{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Create New User </h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Category</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-md-flex align-items-center">
+
+                                {{ include('admin/user/_form.html.twig') }}
+
+                            </div>
+                        </div>
+
+
+                        <br>
+                        <a href="{{ path('admin_user_index') }}" class="btn btn-block btn-primary" type="button">Back to List</a>
+                        <br>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

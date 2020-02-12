@@ -1,0 +1,57 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }} Profile{% endblock %}
+
+{% block body %}
+
+    <section id="subintro">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span8">
+                        <h3><i class="m-icon-big-swapright m-icon-white"></i> Blog</h3>
+                        <p>Fundamental HTML elements styled and enhanced with extensible classes.</p>
+                    </div>
+                    <div class="span4">
+                        <div class="input-append">
+                            <form class="form-search">
+                                <input type="text" class="input-medium search-query">
+                                <button type="submit" class="btn btn-inverse">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+                {{ include('user/usermenu.html.twig') }}
+
+                <!-- -----------article-------------------    -->
+
+                <div class="span8">
+                    <article class="blog-post">
+                        <div class="tooltip-demo headline">
+                            <h4><a href="#">Example article with thumbnail image</a></h4>
+                            <span class="comment"><a href="#" rel="tooltip" data-placement="top" title="3 Comments">3 comments</a></span>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="span3">
+
+
+                                {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+{% endblock %}

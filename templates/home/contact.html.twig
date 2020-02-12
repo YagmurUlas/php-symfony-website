@@ -1,0 +1,92 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}Contact | {{ setting[0].title }}{% endblock %}
+{% block keywords %}{{ setting[0].keywords}}{% endblock %}
+{% block description %}{{ setting[0].description }}{% endblock %}
+
+{% block body %}
+
+    <section id="subintro">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span8">
+                        <h3><i class="m-icon-big-swapright m-icon-white"></i> Contact Us</h3>
+                        <p>Contact Page Trial</p>
+                    </div>
+                    <div class="span4">
+                        <div class="input-append">
+                            <form class="form-search">
+                                <input type="text" class="input-medium search-query">
+                                <button type="submit" class="btn btn-inverse">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+                <div class="span5">
+                    {{ include('messages.html.twig') }}
+                    <div id="errormessage"></div>
+                    <h3><strong>Contact Form</strong></h3>
+
+                    <form name="messages" method="post" role="form" class="contactForm">
+                        <div class="row">
+                            <div class="span5 form-group">
+                                <input type="text" id="messages_name" name="messages[name]" class="input-block-level" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+
+                            <div class="span5 form-group">
+                                <input type="email" id="messages_email" name="messages[email]" class="input-block-level" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                <div class="validation"></div>
+                            </div>
+
+                            <div class="span5 form-group">
+                                <input type="text" class="input-block-level" id="messages_subject" name="messages[subject]" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="span5 form-group">
+                                <textarea class="input-block-level" id="messages_message" name="messages[message]" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                                <div class="validation"></div>
+                                <div style="text-align: center;">
+                                    <input type="hidden" name="token" value="{{csrf_token('form-message')}}" />
+                                    <button class="btn btn-medium btn-success" type="submit">Send a message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="span7">
+                    <aside>
+                        <div class="widget">
+                            <ul class="social_small">
+
+                                <li class="facebook first"><a href="{{ setting[0].facebook }}" title="Facebook">Facebook</a></li>
+                                <li class="twitt"><a href="{{ setting[0].twitter }}" title="Twitter">Twitter</a></li>
+                                <li class="googleplus"><a href="{{ setting[0].twitter }}" title="google plus">Instagram</a></li>
+                                <li class="flickr"><a href="#" title="flickr">Flickr</a></li>
+                                <li class="dribbble"><a href="#" title="Dribbble">Dribbble</a></li>
+                            </ul>
+                        </div>
+                        <br>
+                        <div class="widget">
+                            <h4 class="heading-success"><span class="btn btn btn-success"><i class="m-icon-big-swapdown m-icon-white"></i></span>&nbsp;&nbsp;Get in touch with us</h4>
+                            {{ setting[0].contact |raw }}
+                        </div>
+                    </aside>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

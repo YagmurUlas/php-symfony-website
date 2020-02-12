@@ -1,0 +1,90 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Contact Form Messages{% endblock %}
+
+{% block body %}
+
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h3>Contact Form Messages</h3>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Contact Form Messages</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+
+            <div class="row">
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-md-flex align-items-center">
+
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Status</th>
+                                        <th>Ip</th>
+                                        <th>Note</th>
+                                        <th>Created_at</th>
+                                        <th>Updated_at</th>
+                                        <th>actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for message in messages %}
+                                        <tr>
+                                            <td>{{ message.id }}</td>
+                                            <td>{{ message.name }}</td>
+                                            <td>{{ message.subject }}</td>
+                                            <td>{{ message.message }}</td>
+                                            <td>{{ message.status }}</td>
+                                            <td>{{ message.ip }}</td>
+                                            <td>{{ message.note }}</td>
+                                            <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                            <td>{{ message.updatedAt ? message.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                            <td>
+                                                <a href="{{ path('admin_messages_show', {'id': message.id}) }}" class="btn btn-block btn-warning">show</a>
+                                                <a href="{{ path('admin_messages_edit', {'id': message.id}) }}" class="btn btn-block btn-primary">edit</a>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="10">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+            <!-- Recent comment and chats -->
+            <!-- ============================================================== -->
+        </div>
+        </div>
+    </div>
+
+{% endblock %}
